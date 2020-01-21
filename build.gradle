@@ -25,6 +25,6 @@ tasks.register("hello") {
     description = 'My new task created'
 
     doLast {
-        println 'hello Vlad'
+        println 'hello Vlad111'
     }
 }
