@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="1" parallel="methods" name="Failed suite [DataProvider and listener]" verbose="0">
+  <listeners>
+    <listener class-name="Loger.CustomLoger"/>
+    <listener class-name="Reporters.CustomReporter"/>
+  </listeners>
+  <test parallel="methods" name="Check LoggingTests(failed)" preserve-order="false">
+    <groups>
+      <run>
+        <include name="all"/>
+      </run>
+    </groups>
+    <classes>
+      <class name="CustomLoggingTest">
+        <methods>
+          <include name="testMethodThree"/>
+          <include name="testMethodTwo"/>
+          <include name="MethodSix"/>
+        </methods>
+      </class>
+    </classes>
+  </test>
+</suite>
