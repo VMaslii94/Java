@@ -4,7 +4,7 @@ plugins {
 
 group 'org.example'
 version '1.0-SNAPSHOT'
-
+ 
 sourceCompatibility = 1.8
 
 repositories {
@@ -13,18 +13,27 @@ repositories {
 
 dependencies {
    // testCompile group: 'junit', name: 'junit', version: '4.12'
-    compile group: 'org.testng', name: 'testng', version: '7.1.0'
+    compile group: 'org.testng', name: 'testng', version: '6.0.1'
     compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
 }
 
 test{
-    useTestNG()
-}
-tasks.register("hello") {
-    group = 'myGroupTask'
-    description = 'My new task created'
-
-    doLast {
-        println 'hello Vlad111'
+    useTestNG() {
+        suites "src/test/resources/testng.xml"
+        useDefaultListeners = true
+        outputDirectory = file(("$projectDir/TestResultReport/Test"))
     }
+   // options.suites("src/test/resources/testng.xml")
+
+}
+task smokeTests(type: Test) { // we define a task with name ‘smokeTests’
+    group = 'myTestGroup'
+    description = 'My new smoke task created'
+    useTestNG() {
+        suites 'src/test/resources/testng.xml'
+        includeGroups 'all' // We define the group name by using ‘includeGroups’ parameter.
+        useDefaultListeners = true
+        outputDirectory = file(("$projectDir/TestResultReport/SmokeTest"))
+    }
+
 }
