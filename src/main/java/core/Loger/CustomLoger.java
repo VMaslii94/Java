@@ -1,4 +1,4 @@
-package Loger;
+package core.Loger;
 
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;

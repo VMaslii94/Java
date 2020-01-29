@@ -35,5 +35,5 @@ task smokeTests(type: Test) { // we define a task with name ‘smokeTests’
         useDefaultListeners = true
         outputDirectory = file(("$projectDir/TestResultReport/SmokeTest"))
     }
-
+      reports.html.setDestination(file("$projectDir/TestResultReport/GradleReport")) //Reporter from Gradle framework
 }

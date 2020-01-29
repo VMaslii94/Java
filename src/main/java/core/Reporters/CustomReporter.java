@@ -1,4 +1,4 @@
-package Reporters;
+package core.Reporters;
 
 import org.testng.IReporter;
 import org.testng.ISuite;

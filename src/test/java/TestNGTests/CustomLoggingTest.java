@@ -1,3 +1,5 @@
+package TestNGTests;
+
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.testng.Assert;
 import org.testng.Reporter;
@@ -15,47 +17,47 @@ public class CustomLoggingTest extends TestSuitParameters {
 
     @Test(groups = {firstGroup})
     public void testMethodTwo() {
-        Assert.assertTrue(false);
+        Assert.assertTrue(true);
     }
 
     @Test(dependsOnMethods = {"testMethodTwo"}, groups = {firstGroup})
     public void testMethodThree() {
-        Reporter.log("Second valid method");
+        Reporter.log("Second valid method 11");
         Assert.assertTrue(true);
     }
 
     @Test(enabled = true)
 
-    private void MethodFour() {
+    private void methodFour() {
         Assert.assertTrue(false);
     }
 
 
     @Test(enabled = true)
-    private void MethodFive() {
+    private void methodFive() {
         Assert.assertTrue(true);
     }
 
     @Test(groups = {firstGroup,secondGroup} )
-    private void MethodSix() {
+    private void methodSix() {
         Reporter.log("Added assertion for method");
         Assert.assertTrue(true);
         Reporter.log("Added assertion2 for method");
-        Assert.assertTrue(false);
+        Assert.assertTrue(true);
         Reporter.log("Added assertion3 for method");
         Assert.assertTrue(true);
     }
 
 
     @Ignore
-    @Test( groups ="bb", dependsOnGroups = {firstGroup})
-    private void MethodSeven() {
+    @Test( groups ="anotherGroup", dependsOnGroups = {firstGroup})
+    private void methodSeven() {
         Assert.assertTrue(true);
     }
 
     @BeforeClass
 
-    private void CreateSomeData(){
+    private void createSomeData(){
         System.out.println("Before this class");
     }
 

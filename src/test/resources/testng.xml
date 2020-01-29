@@ -2,8 +2,8 @@
 <suite name="DataProvider and listener" parallel="methods" thread-count="1" >
 
     <listeners>
-        <listener class-name="Loger.CustomLoger"/>
-        <listener class-name="Reporters.CustomReporter"/>
+        <listener class-name="core.Loger.CustomLoger"/>
+        <listener class-name="core.Reporters.CustomReporter"/>
 
     </listeners>
 
@@ -21,17 +21,18 @@
             </run>
         </groups>
         <classes>
-            <class name="CustomLoggingTest">
-                  <methods>
-                      <exclude name="MethodFive"></exclude>
-                  </methods>
+            <class name="TestNGTests.CustomLoggingTest">
+                <methods>
+                    <exclude name="methodFive"></exclude>
+                </methods>
             </class>
+
         </classes>
     </test>
 
     <test name="Test2">
         <classes>
-            <class name="TestWithDataProvider"/>
+            <class name="TestNGTests.TestWithDataProvider"/>
         </classes>
     </test>
 

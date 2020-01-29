@@ -1,3 +1,5 @@
+package TestNGTests;
+
 import org.testng.annotations.Test;
 
 public class LoginTest {
