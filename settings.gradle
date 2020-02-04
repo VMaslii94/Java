@@ -1,2 +1,4 @@
 rootProject.name = 'TestingProject'
+include 'mentorship'
+include 'mentorship'
 
