@@ -8,22 +8,23 @@ import org.testng.ITestContext;
 import org.testng.annotations.*;
 
 public class TestSuitParameters extends EnvVars {
+    public WebDriver driver;
 
     @BeforeSuite
-    public void before(){
+    public void before() {
 
         System.out.println("Before all classes");
     }
+
     @AfterSuite
-    public void after (){
+    public void after() {
         System.out.println("After all");
     }
 
-    WebDriver driver ;
-    @Parameters("browser")
-   @BeforeTest
-    public  void setBrowserInstance(String browser) {
 
+    @Parameters("browser")
+    @BeforeClass
+    public void setBrowserInstance(String browser) {
 
         if (browser.equalsIgnoreCase("firefox")) {
             //create firefox instance
@@ -40,10 +41,8 @@ public class TestSuitParameters extends EnvVars {
     }
 
 
-
-
     @BeforeMethod
-    public void beforeMethod (ITestContext context) {
+    public void beforeMethod(ITestContext context) {
         context.getCurrentXmlTest().getTestParameters().forEach((key, value) -> {
             System.out.println("key : " + key + "  and value : " + value);
         });

@@ -4,7 +4,7 @@ plugins {
 
 group 'org.example'
 version '1.0-SNAPSHOT'
- 
+
 sourceCompatibility = 1.8
 
 repositories {
@@ -12,33 +12,76 @@ repositories {
 }
 
 dependencies {
-   // testCompile group: 'junit', name: 'junit', version: '4.12'
+    // testCompile group: 'junit', name: 'junit', version: '4.12'
     compile group: 'org.testng', name: 'testng', version: '6.0.1'
     compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
 }
 
-test{
+test {
+    dependsOn 'generateSuiteXml'
     //        systemProperties project.properties.subMap("BrowserName");
-     useTestNG() {
-     boolean isBrowserProp = project.hasProperty("BrowserName");
-      String browser = (isBrowserProp == true)?project.getProperty("BrowserName"):"chrome";
-        if ( browser =="chrome"){
-            suites "src/test/resources/testng1.xml"
-        }
-
-        else if (browser == "firefox"){
-            suites "src/test/resources/testng.xml"
-
-
-        }
-         else {
-            println ("Browser wasn't set, please check")
-        }
-
-         useDefaultListeners = true
-         outputDirectory = file(("$projectDir/TestResultReport/Test"))
+    useTestNG() {
+        suites 'src/test/resources/testng-temp.xml'
+        useDefaultListeners = true
+        outputDirectory = file(("$projectDir/TestResultReport/Test"))
     }
 
+   // options.suites(configuredTestNGXml())
+
+
+}
+
+task generateSuiteXml() {
+    //Get browser from system param or set as default
+    boolean isBrowserProp = project.hasProperty("BrowserName");
+    String browser = isBrowserProp ? project.getProperty("BrowserName") : "chrome";
+    configuredTestNGXml(browser)
+}
+
+
+def configuredTestNGXml(String param) {
+    def xmlInputFile = "src/test/resources/testng.xml"
+    def xmlOutputFile = "src/test/resources/testng-temp.xml"
+
+    def parser = new XmlParser()
+    parser.setFeature("http://apache.org/xml/features/disallow-doctype-decl", false)
+    parser.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false)
+    def suite = parser.parse(projectDir.absolutePath + "/" + xmlInputFile)
+
+    // Select browser as editing parameter in  new template XML file
+    if (param) {
+        suite.parameter
+                .findAll { it.'@name' == 'browser' }
+                .each { browserParam ->
+                    // browserParam.parent().remove(test)
+                    browserParam.'@value' = param
+                }
+    }
+
+//        if (project.hasProperty('groups')) {
+//            def groups = project.property('groups').split(',')
+//            suite.test.each { test ->
+////            <groups> and <run> tags are already exist in every test
+////            test.children().add(test.parameter.size(), new Node(null, "groups", []))
+////            new Node(test.groups[0], 'run')
+//                groups.each { group ->
+//                    new Node(test.groups.run[0], 'include', [name: group])
+//                }
+//            }
+//        }
+//        // Delete IE tests if local run
+//        if (!System.properties.containsKey('grid.url')) {
+//            suite.test
+//                    .findAll { it.parameter[0].'@value' == 'ie' }
+//                    .each { test -> test.parent().remove(test) }
+//        }
+
+
+    def writer = new FileWriter(projectDir.absolutePath + "/" + xmlOutputFile)
+    writer << '<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >\n'
+    new XmlNodePrinter(new PrintWriter(writer)).print(suite)
+
+    return xmlOutputFile
 
 //    useTestNG() {
 //
@@ -46,9 +89,10 @@ test{
 //        useDefaultListeners = true
 //        outputDirectory = file(("$projectDir/TestResultReport/Test"))
 //    }
-   // options.suites("src/test/resources/testng.xml")
+    // options.suites("src/test/resources/testng.xml")
 
 }
+
 task smokeTests(type: Test) { // we define a task with name ‘smokeTests’
     group = 'myTestGroup'
     description = 'My new smoke task created'
@@ -58,7 +102,7 @@ task smokeTests(type: Test) { // we define a task with name ‘smokeTests’
         useDefaultListeners = true
         outputDirectory = file(("$projectDir/TestResultReport/SmokeTest"))
     }
-      reports.html.setDestination(file("$projectDir/TestResultReport/GradleReport")) //Reporter from Gradle framework
+    reports.html.setDestination(file("$projectDir/TestResultReport/GradleReport")) //Reporter from Gradle framework
 }
 
 //tasks.withType(Test) {
