@@ -6,9 +6,19 @@ import org.testng.annotations.Test;
 public class TEST1 extends TestSuitParameters {
 
     @Test
-    void loginTest() {
+    void redirectTest() {
 
         driver.get("https://www.youtube.com/watch?v=ms3NggvNW40&list=PLUDwpEzHYYLv9v8aRuNi67vZ81cW2ksze");
+        System.out.println(driver.getTitle());
+        driver.close();
+
+        System.out.println("first Methods");
+
+    }
+    @Test
+    void redirectTest1() {
+
+        driver.get("https://google.com");
         System.out.println(driver.getTitle());
         driver.close();
 

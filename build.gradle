@@ -26,15 +26,15 @@ test {
         outputDirectory = file(("$projectDir/TestResultReport/Test"))
     }
 
-   // options.suites(configuredTestNGXml())
+   // options.suites('src/test/resources/testng.xml')
 
 
 }
 
 task generateSuiteXml() {
     //Get browser from system param or set as default
-    boolean isBrowserProp = project.hasProperty("BrowserName");
-    String browser = isBrowserProp ? project.getProperty("BrowserName") : "chrome";
+    boolean isBrowserProp = project.hasProperty("browserName");
+    String browser = isBrowserProp ? project.getProperty("browserName") : "chrome";
     configuredTestNGXml(browser)
 }
 
@@ -75,7 +75,6 @@ def configuredTestNGXml(String param) {
 //                    .findAll { it.parameter[0].'@value' == 'ie' }
 //                    .each { test -> test.parent().remove(test) }
 //        }
-
 
     def writer = new FileWriter(projectDir.absolutePath + "/" + xmlOutputFile)
     writer << '<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >\n'

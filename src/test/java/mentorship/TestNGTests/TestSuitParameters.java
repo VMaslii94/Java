@@ -5,7 +5,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestContext;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
 
 public class TestSuitParameters extends EnvVars {
     public WebDriver driver;
@@ -23,7 +26,7 @@ public class TestSuitParameters extends EnvVars {
 
 
     @Parameters("browser")
-    @BeforeClass
+    @BeforeMethod
     public void setBrowserInstance(String browser) {
 
         if (browser.equalsIgnoreCase("firefox")) {
@@ -36,17 +39,12 @@ public class TestSuitParameters extends EnvVars {
 
             //create chrome instance
             driver = new ChromeDriver();
-
         }
     }
-
-
-    @BeforeMethod
     public void beforeMethod(ITestContext context) {
         context.getCurrentXmlTest().getTestParameters().forEach((key, value) -> {
             System.out.println("key : " + key + "  and value : " + value);
         });
     }
-
 
 }
