@@ -1,11 +1,10 @@
 package mentorship.testingParameters;
 
-import mentorship.core.EnvVars.EnvVars;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-public class parameters extends EnvVars {
+public class parameters  {
   //  public class parameters extends TestSuitParameters {
 
     public  void setParam (){

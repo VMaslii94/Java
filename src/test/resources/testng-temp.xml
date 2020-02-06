@@ -1,18 +1,23 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="DataProvider and listener" parallel="methods" thread-count="1">
-  <parameter name="browser" value="chrome"/>
+<suite name="DataProvider and listener" parallel="tests" thread-count="3">
   <listeners>
     <listener class-name="mentorship.core.Loger.CustomLoger"/>
     <listener class-name="mentorship.core.Reporters.CustomReporter"/>
   </listeners>
-  <test name="Test1">
+  <test name="Before/After hooks">
     <classes>
-      <class name="mentorship.browserInstanceTests.TEST1"/>
+      <class name="mentorship.suitSetup.BaseTest"/>
     </classes>
   </test>
-  <test name="Test2">
+  <test name="Firefox browser">
     <classes>
-      <class name="mentorship.browserInstanceTests.TEST2"/>
+      <class name="mentorship.browserInstanceTests.firefoxBrowser"/>
+    </classes>
+  </test>
+  <test name="Chrome browser">
+    <parameter name="browserName" value="CHROME"/>
+    <classes>
+      <class name="mentorship.browserInstanceTests.chromeBrowser"/>
     </classes>
   </test>
 </suite>

@@ -18,15 +18,15 @@ dependencies {
 }
 
 test {
-    dependsOn 'generateSuiteXml'
+    //       dependsOn 'generateSuiteXml'
     //        systemProperties project.properties.subMap("BrowserName");
     useTestNG() {
-        suites 'src/test/resources/testng-temp.xml'
+        suites 'src/test/resources/testng.xml'
         useDefaultListeners = true
         outputDirectory = file(("$projectDir/TestResultReport/Test"))
     }
 
-   // options.suites('src/test/resources/testng.xml')
+    // options.suites('src/test/resources/testng.xml')
 
 
 }

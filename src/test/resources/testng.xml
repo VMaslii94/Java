@@ -1,11 +1,32 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="DataProvider and listener" parallel="methods" thread-count="1">
-    <parameter name="browser" value="firefox"></parameter>
+<suite name="DataProvider and listener" parallel="tests" thread-count="3">
+    <!--    <parameter name="browser" value="firefox"></parameter>-->
     <listeners>
         <listener class-name="mentorship.core.Loger.CustomLoger"/>
         <listener class-name="mentorship.core.Reporters.CustomReporter"/>
 
     </listeners>
+
+    <test name="Before/After hooks">
+        <classes>
+            <class name="mentorship.suitSetup.BaseTest"></class>
+        </classes>
+    </test>
+
+    <test name="Firefox browser">
+        <!-- <parameter name="browserName" value="FF"></parameter> -->
+        <classes>
+            <class name="mentorship.browserInstanceTests.firefoxBrowser"></class>
+        </classes>
+    </test>
+
+    <test name="Chrome browser">
+        <parameter name="browserName" value="CHROME"></parameter>
+        <classes>
+            <class name="mentorship.browserInstanceTests.chromeBrowser"></class>
+        </classes>
+    </test>
+
 
     <!--    <test name="Params">-->
     <!--        <parameter name="user" value="user@email.com" />-->
@@ -18,19 +39,6 @@
     <!--        </classes>-->
     <!--        -->
     <!--    </test>-->
-
-
-    <test name="Test1">
-        <classes>
-            <class name="mentorship.browserInstanceTests.TEST1"></class>
-        </classes>
-    </test>
-
-    <test name="Test2">
-        <classes>
-            <class name="mentorship.browserInstanceTests.TEST2"></class>
-        </classes>
-    </test>
 
     <!--    <test name="Check LoggingTests">-->
     <!--        <groups>-->
@@ -45,7 +53,7 @@
     <!--            </run>-->
     <!--        </groups>-->
     <!--        <classes>-->
-    <!--            <class name="mentorship.TestNGTests.CustomLoggingTest">-->
+    <!--            <class name="mentorship.TestNGTests.CustomLoggingBaseTest">-->
     <!--                <methods>-->
     <!--                    <exclude name="methodFive"></exclude>-->
     <!--                </methods>-->

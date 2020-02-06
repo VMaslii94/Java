@@ -1,12 +1,13 @@
 package mentorship.TestNGTests;
 
 import jdk.nashorn.internal.ir.annotations.Ignore;
+import mentorship.suitSetup.BaseTest;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class CustomLoggingTest extends TestSuitParameters {
+public class CustomLoggingBaseTest extends BaseTest {
  private static final String firstGroup = "first";
  private static final String secondGroup = "second";
 

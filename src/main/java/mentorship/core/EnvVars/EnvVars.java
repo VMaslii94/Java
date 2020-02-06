@@ -10,7 +10,7 @@ public class EnvVars {
     static {
         setChromeDriverPath();
         setFirefoxDriverPath();
-        // setHeadless();
+        setHeadless();
     }
 
     private static void setChromeDriverPath() {
@@ -19,7 +19,7 @@ public class EnvVars {
             //  Log.warn("chrome.driver.path is not set!!! Using '" + CHROME_DRIVER_PATH + "' by default");
         }
         //Log.info("chrome.driver.path is: " + CHROME_DRIVER_PATH);
-        System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_PATH);
+
     }
 
     private static void setFirefoxDriverPath() {
@@ -28,7 +28,19 @@ public class EnvVars {
             //   Log.warn("firefox.driver.path is not set!!! Using '" + FIREFOX_DRIVER_PATH + "' by default");
         }
         //  Log.info("firefox.driver.path is: " + FIREFOX_DRIVER_PATH);
-        System.setProperty("webdriver.gecko.driver", FIREFOX_DRIVER_PATH);
+    }
+
+    private static void setHeadless() {
+        if (System.getProperty("HEADLESS") != null) {
+            HEADLESS = Boolean.parseBoolean(System.getProperty("HEADLESS"));
+        } else if (System.getProperty("HEADLESS") == null && !HEADLESS) {
+            HEADLESS = false;
+        } else if (System.getProperty("HEADLESS") == null && HEADLESS) {
+            HEADLESS = true;
+        } else {
+            HEADLESS = false;
+        }
+
     }
 
 
