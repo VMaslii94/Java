@@ -31,12 +31,12 @@ test {
 
 }
 
-task generateSuiteXml() {
-    //Get browser from system param or set as default
-    boolean isBrowserProp = project.hasProperty("browserName");
-    String browser = isBrowserProp ? project.getProperty("browserName") : "chrome";
-    configuredTestNGXml(browser)
-}
+//task generateSuiteXml() {
+//    //Get browser from system param or set as default
+//    boolean isBrowserProp = project.hasProperty("browserName");
+//    String browser = isBrowserProp ? project.getProperty("browserName") : "chrome";
+//    configuredTestNGXml(browser)
+//}
 
 
 def configuredTestNGXml(String param) {

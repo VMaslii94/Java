@@ -48,5 +48,9 @@ public class WebDriverProvider {
 
     }
 
+    public static void quitDriver(WebDriver webDriver){
+        webDriver.quit();
+
+    }
 
 }

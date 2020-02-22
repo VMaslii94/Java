@@ -6,18 +6,7 @@
   </listeners>
   <test name="Before/After hooks">
     <classes>
-      <class name="mentorship.suitSetup.BaseTest"/>
-    </classes>
-  </test>
-  <test name="Firefox browser">
-    <classes>
-      <class name="mentorship.browserInstanceTests.firefoxBrowser"/>
-    </classes>
-  </test>
-  <test name="Chrome browser">
-    <parameter name="browserName" value="CHROME"/>
-    <classes>
-      <class name="mentorship.browserInstanceTests.chromeBrowser"/>
+      <class name="tests.user.LoginTest"/>
     </classes>
   </test>
 </suite>
