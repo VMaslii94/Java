@@ -12,7 +12,7 @@ public class WebDriverProvider {
     public static WebDriver createDriver(String browserName) {
         WebDriver webDriver;
 
-        if (browserName.equals(Browser.CHROME.name())) {
+        if (browserName.equalsIgnoreCase(Browser.CHROME.name())) {
             System.setProperty("webdriver.chrome.driver", EnvVars.CHROME_DRIVER_PATH);
             ChromeOptions options = new ChromeOptions();
             options.addArguments("window-size=1400,900");
