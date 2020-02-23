@@ -14,7 +14,7 @@ public class ProfilePage extends AccountPage {
 
     public ProfilePage(WebDriver webDriver) {
         super(webDriver);
-        CommonActions.waitForElementVisibility(webDriver, rootElement);
+        CommonActions commonActions = new CommonActions(webDriver).waitForElementVisibility(rootElement);
     }
 
     public String getTitle() {
@@ -22,6 +22,7 @@ public class ProfilePage extends AccountPage {
         return rootElement.getText();
 
     }
+
     public String getFirstName() {
         System.out.println("First name value is : " + firstName.getAttribute("value"));
         return firstName.getAttribute("value");

@@ -8,11 +8,8 @@ import pages.user.accountPage.AccountPage;
 
 public class LoginPage extends CommonUserPage {
 
-    @FindBy(css = "li>div.dropdown-login")
+    @FindBy(css = ".row div.ph-30")
     private WebElement rootElement;
-
-    @FindBy(css = "a[href=\"https://www.phptravels.net/login\"]")
-    private WebElement myAccountElement;
 
     @FindBy(css = "input[name=username]")
     private WebElement emailInp;
@@ -24,9 +21,9 @@ public class LoginPage extends CommonUserPage {
     private WebElement loginBtn;
 
 
-    public LoginPage(WebDriver webDriver){
+    public LoginPage(WebDriver webDriver) {
         super(webDriver);
-        CommonActions.waitForElementVisibility(webDriver, rootElement);
+        CommonActions commonActions = new CommonActions(webDriver).waitForElementVisibility(rootElement);
 
     }
 
@@ -44,5 +41,12 @@ public class LoginPage extends CommonUserPage {
     public AccountPage clickLoginBtn() {
         loginBtn.click();
         return new AccountPage(webDriver);
+    }
+    public AccountPage login(String email, String password){
+        openLoginPage();
+        setEmail(email);
+        setPassword(password);
+        clickLoginBtn();
+        return  new AccountPage(webDriver);
     }
 }

@@ -10,8 +10,8 @@ public class HomePage extends CommonUserPage {
     @FindBy(css = "p.serverHeader__title")
     private WebElement rootElement;
 
-    public HomePage(WebDriver webDriver){
+    public HomePage(WebDriver webDriver) {
         super(webDriver);
-        CommonActions.waitForElementVisibility(webDriver,rootElement);
+        CommonActions commonActions = new CommonActions(webDriver).waitForElementVisibility(rootElement);
     }
 }

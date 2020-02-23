@@ -23,17 +23,17 @@ public class AccountPage extends CommonUserPage {
 
     public AccountPage(WebDriver webDriver) {
         super(webDriver);
-        CommonActions.waitForElementVisibility(webDriver, rootElement);
+        CommonActions commonActions = new CommonActions(webDriver).waitForElementVisibility( rootElement);
     }
 
     public String getProfileName() {
-        CommonActions.waitForElementVisibility(webDriver, userName);
+        commonActions.waitForElementVisibility( userName);
         System.out.println("Profile name in Account Page is : " + userName.getText());
         return userName.getText();
     }
 
     public ProfilePage openMyProfileMenu() {
-        CommonActions.waitForElementVisibility(webDriver, profileMenu);
+        commonActions.waitForElementVisibility(profileMenu);
         profileMenu.click();
         return new ProfilePage(webDriver);
 
