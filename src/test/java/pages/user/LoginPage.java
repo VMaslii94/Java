@@ -1,6 +1,5 @@
 package pages.user;
 
-import mentorship.core.browser.CommonActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,8 +22,7 @@ public class LoginPage extends CommonUserPage {
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
-        CommonActions commonActions = new CommonActions(webDriver).waitForElementVisibility(rootElement);
-
+        commonActions.waitForElementVisibility(rootElement);
     }
 
 
@@ -43,10 +41,15 @@ public class LoginPage extends CommonUserPage {
         return new AccountPage(webDriver);
     }
     public AccountPage login(String email, String password){
-        openLoginPage();
         setEmail(email);
         setPassword(password);
         clickLoginBtn();
         return  new AccountPage(webDriver);
     }
+    public LoginPage setLanguageName(String a){
+        selectLanguage(a);
+        return this;
+    }
+
+
 }

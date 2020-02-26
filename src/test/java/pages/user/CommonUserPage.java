@@ -1,6 +1,5 @@
 package pages.user;
 
-import mentorship.core.browser.CommonActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,7 +23,7 @@ public class CommonUserPage extends BasePage {
 
     public CommonUserPage(WebDriver webDriver){
         super(webDriver);
-        CommonActions commonActions = new CommonActions(webDriver).waitForElementVisibility(navigationTabs );
+        commonActions.waitForElementVisibility(navigationTabs );
     }
 
 
@@ -32,7 +31,7 @@ public class CommonUserPage extends BasePage {
 
         WebElement language_dropdown=webDriver.findElement(By.cssSelector(".dropdown-language .dropdown-menu-inner"));
 
-        Select language=new Select(language_dropdown);
+        Select language= new Select(language_dropdown);
 
         language.selectByValue(languageName);
         WebElement first_value=language.getFirstSelectedOption();
@@ -49,9 +48,10 @@ public class CommonUserPage extends BasePage {
         return new LoginPage(webDriver);
     }
 
-    public void openHomePage(){
+    public HomePage openHomePage(){
         homeTab.click();
         System.out.println("Opened home page");
+        return new HomePage(webDriver);
     }
 
 

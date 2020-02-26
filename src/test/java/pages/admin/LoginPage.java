@@ -1,6 +1,5 @@
 package pages.admin;
 
-import mentorship.core.browser.CommonActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,7 +22,7 @@ public class LoginPage extends BasePage {
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
-        CommonActions commonActions = new CommonActions(webDriver).waitForElementVisibility(rootElement);
+        commonActions.waitForElementVisibility(rootElement);
 //        new WebDriverWait(webDriver, EnvVars.WAIT_TIMEOUT)
 //                .until(ExpectedConditions.visibilityOf(rootElement));
     }

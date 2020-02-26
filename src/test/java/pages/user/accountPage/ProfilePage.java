@@ -1,6 +1,5 @@
 package pages.user.accountPage;
 
-import mentorship.core.browser.CommonActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,10 +13,10 @@ public class ProfilePage extends AccountPage {
 
     public ProfilePage(WebDriver webDriver) {
         super(webDriver);
-        CommonActions commonActions = new CommonActions(webDriver).waitForElementVisibility(rootElement);
+        commonActions.waitForElementVisibility(rootElement);
     }
 
-    public String getTitle() {
+    public String getPageTitle() {
         System.out.println("Title of Profile Page  is : " + rootElement.getText());
         return rootElement.getText();
 

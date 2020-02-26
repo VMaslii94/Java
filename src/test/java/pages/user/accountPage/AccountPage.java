@@ -4,6 +4,7 @@ import mentorship.core.browser.CommonActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.user.BookingPage;
 import pages.user.CommonUserPage;
 
 public class AccountPage extends CommonUserPage {
@@ -21,9 +22,11 @@ public class AccountPage extends CommonUserPage {
     private WebElement userName;
 
 
+
+
     public AccountPage(WebDriver webDriver) {
         super(webDriver);
-        CommonActions commonActions = new CommonActions(webDriver).waitForElementVisibility( rootElement);
+       commonActions.waitForElementVisibility( rootElement);
     }
 
     public String getProfileName() {
@@ -32,15 +35,20 @@ public class AccountPage extends CommonUserPage {
         return userName.getText();
     }
 
-    public ProfilePage openMyProfileMenu() {
+    public ProfilePage openMyProfilePage() {
         commonActions.waitForElementVisibility(profileMenu);
         profileMenu.click();
         return new ProfilePage(webDriver);
 
     }
 
-    public void openBookingMenu() {
+    public BookingPage openBookingPage() {
         bookingsMenu.click();
+        return new BookingPage(webDriver);
+    }
+
+    public boolean checkNavigationBarExistence(){
+      return  CommonActions.checkIfElementExistCssSelector(webDriver, "nav.main-nav-menu");
     }
 
 

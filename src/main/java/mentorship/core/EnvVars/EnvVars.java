@@ -5,7 +5,7 @@ public class EnvVars {
     public static String CHROME_DRIVER_PATH = System.getProperty("CHROMEPATH");
     public static String FIREFOX_DRIVER_PATH = System.getProperty("FIREFOXPATH");
     public static boolean HEADLESS = false;
-    public static int WAIT_TIMEOUT = 15;
+    public static int WAIT_TIMEOUT = 60;
 
     static {
         setChromeDriverPath();

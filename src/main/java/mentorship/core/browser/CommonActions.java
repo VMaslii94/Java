@@ -49,6 +49,8 @@ public class CommonActions {
         } else {
             System.out.println("No element exist !!! by selector : " + selector);
         }
+
+        webDriver.manage().timeouts().implicitlyWait(EnvVars.WAIT_TIMEOUT, TimeUnit.SECONDS);
         return exists;
 
 //        List<WebElement> dynamicElement = webDriver.findElements(By.id("id"));
