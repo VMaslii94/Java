@@ -4,14 +4,14 @@
     <listener class-name="mentorship.core.Loger.CustomLoger"/>
     <listener class-name="mentorship.core.Reporters.CustomReporter"/>
   </listeners>
-  <test name="Login">
+  <test name="Customers">
     <classes>
-      <class name="tests.user.LoginTest"/>
+      <class name="tests.admin.CustomerTableTest"/>
     </classes>
   </test>
-  <test name="Account">
+  <test name="Change setting">
     <classes>
-      <class name="tests.user.AccountTest"/>
+      <class name="tests.admin.GeneralSettingTest"/>
     </classes>
   </test>
 </suite>

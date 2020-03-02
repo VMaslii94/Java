@@ -23,8 +23,7 @@ public class LoginPage extends BasePage {
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
         commonActions.waitForElementVisibility(rootElement);
-//        new WebDriverWait(webDriver, EnvVars.WAIT_TIMEOUT)
-//                .until(ExpectedConditions.visibilityOf(rootElement));
+
     }
 
 
@@ -41,6 +40,13 @@ public class LoginPage extends BasePage {
     public DashboardPage clickLoginBtn() {
         loginBtn.click();
         return new DashboardPage(webDriver);
+    }
+
+    public DashboardPage login(String email, String password){
+        setEmail(email);
+        setPassword(password);
+        clickLoginBtn();
+        return  new DashboardPage(webDriver);
     }
 
 

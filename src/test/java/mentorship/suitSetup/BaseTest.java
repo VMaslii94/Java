@@ -5,7 +5,7 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
-public class BaseTest  {
+public class BaseTest {
 
     @BeforeSuite
     public void before() {
@@ -25,5 +25,7 @@ public class BaseTest  {
             System.out.println("key : " + key + "  and value : " + value);
         });
     }
+
+
 
 }

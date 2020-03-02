@@ -1,10 +1,8 @@
 package mentorship.core.browser;
 
 import mentorship.core.EnvVars.EnvVars;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -35,6 +33,32 @@ public class CommonActions {
 
     public CommonActions closeAlertWindow() {
         webDriver.switchTo().alert().dismiss();
+        return this;
+    }
+
+    public Boolean waitForCondition(WebDriver webDriver,  String expectedConditions, int defaultTimeOutSeconds){
+            JavascriptExecutor jsExecutor = (JavascriptExecutor) webDriver;
+                WebDriverWait wait = new WebDriverWait(webDriver, defaultTimeOutSeconds);
+            return wait.until((ExpectedCondition<Boolean>) input -> {
+                String res = jsExecutor.executeScript(expectedConditions).toString();
+                return Boolean.parseBoolean(res);
+            });
+    }
+
+    public CommonActions waitForElementAppearAndDisappear( WebElement element, int defaultTimeOutSeconds){
+       // webDriver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+       try {
+           new WebDriverWait(webDriver, defaultTimeOutSeconds)
+                   .until(ExpectedConditions.visibilityOf(element));
+           System.out.println(element+ " appear");
+           new WebDriverWait(webDriver, defaultTimeOutSeconds)
+                   .until(ExpectedConditions.invisibilityOf(element));
+           System.out.println(element+ " disapper");
+           //webDriver.manage().timeouts().implicitlyWait(EnvVars.WAIT_TIMEOUT, TimeUnit.SECONDS);
+       }
+       catch (TimeoutException exception){
+           System.out.println("For element"+ element +" was exception:"+exception);
+       }
         return this;
     }
 

@@ -12,7 +12,7 @@ public class CommonUserPage extends BasePage {
     @FindBy(css = "nav.main-nav-menu")
     private WebElement navigationTabs;
 
-    @FindBy(css = "blabla")
+    @FindBy(css = "HomePageSelector")
     private WebElement homeTab;
 
     @FindBy(css = "li>div.dropdown-login")

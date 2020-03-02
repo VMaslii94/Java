@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.BasePage;
+import pages.admin.page_modules.sideBar.SideBar;
 
 public class DashboardPage extends BasePage {
 
@@ -13,10 +14,15 @@ public class DashboardPage extends BasePage {
     @FindBy(css = "#account a")
     private WebElement accountBtn;
 
+    public SideBar sideBar;
 
-    public DashboardPage(WebDriver webDriver){
+    public DashboardPage(WebDriver webDriver) {
         super(webDriver);
-       commonActions.waitForElementVisibility(title);
+        commonActions.waitForElementVisibility(title);
+        this.sideBar = new SideBar(webDriver);
+
+
+
     }
 
 
