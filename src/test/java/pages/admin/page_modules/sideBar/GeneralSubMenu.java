@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pages.admin.SettingsPage;
 
-public class GeneralMenu extends SideBar {
+public class GeneralSubMenu extends SideBar  {
 
     WebDriver webDriver;
     CommonActions commonActions;
@@ -19,7 +19,7 @@ public class GeneralMenu extends SideBar {
     private WebElement settingSubTabInGeneralTab;
 
 
-    public GeneralMenu(WebDriver webDriver) {
+    public GeneralSubMenu(WebDriver webDriver) {
         super(webDriver);
         this.webDriver = webDriver;
         this.commonActions = new CommonActions(webDriver);
@@ -29,6 +29,7 @@ public class GeneralMenu extends SideBar {
     }
 
     public SettingsPage clickOnSettings() {
+        commonActions.waitForElementVisibility(rootElement);
         rootElement.click();
         commonActions.waitForElementVisibility(settingSubTabInGeneralTab);
         settingSubTabInGeneralTab.click();

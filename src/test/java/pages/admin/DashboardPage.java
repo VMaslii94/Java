@@ -22,9 +22,7 @@ public class DashboardPage extends BasePage {
         this.sideBar = new SideBar(webDriver);
 
 
-
     }
-
 
     public String getTitle() {
         return title.getText();

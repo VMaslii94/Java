@@ -11,10 +11,9 @@ public class SideBar extends BasePage {
 
     WebDriver webDriver;
     CommonActions commonActions;
-    GeneralMenu generalMenu;
 
-    @FindBy(css = "div .social-sidebar")
-    private WebElement rootElement;
+    @FindBy(css = "a[href=\"#menu-ui\"]")
+    private WebElement generalMenu;
 
     @FindBy(css = "a[href=\"https://www.phptravels.net/admin/settings/\"]")
     private WebElement settingSubTabInGeneralTab;
@@ -24,24 +23,18 @@ public class SideBar extends BasePage {
         super(webDriver);
         this.webDriver = webDriver;
         this.commonActions = new CommonActions(webDriver);
-        commonActions.waitForElementVisibility(rootElement);
+        commonActions.waitForElementVisibility(generalMenu);
         PageFactory.initElements(webDriver, this);
 
 
     }
 
-    public GeneralMenu openGeneralMenu() {
-        return new GeneralMenu(webDriver);
+    public GeneralSubMenu openGeneralSubMenu() {
+        return new GeneralSubMenu(webDriver);
     }
 
-    public AccountMenu openAccountsMenu() {
-        return new AccountMenu(webDriver);
+    public AccountSubMenu openAccountSubMenu() {
+        return new AccountSubMenu(webDriver);
     }
-//    public SettingsPage goToSettingInGeneral() {
-//        generalTab.click();
-//        settingSubTabInGeneralTab.click();
-//
-//
-//        return new SettingsPage(webDriver);
-//    }
+
 }

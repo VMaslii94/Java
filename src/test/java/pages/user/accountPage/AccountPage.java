@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import pages.user.BookingPage;
 import pages.user.CommonUserPage;
 
+import static org.openqa.selenium.By.cssSelector;
+
 public class AccountPage extends CommonUserPage {
     @FindBy(css = ".container")
     private WebElement rootElement;
@@ -22,15 +24,13 @@ public class AccountPage extends CommonUserPage {
     private WebElement userName;
 
 
-
-
     public AccountPage(WebDriver webDriver) {
         super(webDriver);
-       commonActions.waitForElementVisibility( rootElement);
+        commonActions.waitForElementVisibility(rootElement);
     }
 
     public String getProfileName() {
-        commonActions.waitForElementVisibility( userName);
+        commonActions.waitForElementVisibility(userName);
         System.out.println("Profile name in Account Page is : " + userName.getText());
         return userName.getText();
     }
@@ -47,8 +47,8 @@ public class AccountPage extends CommonUserPage {
         return new BookingPage(webDriver);
     }
 
-    public boolean checkNavigationBarExistence(){
-      return  CommonActions.checkIfElementExistCssSelector(webDriver, "nav.main-nav-menu");
+    public boolean checkNavigationBarExistence() {
+        return CommonActions.isElementExist( webDriver, cssSelector("nav.main-nav-menu"));
     }
 
 

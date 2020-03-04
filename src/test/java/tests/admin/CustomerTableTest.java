@@ -7,8 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 import pages.admin.DashboardPage;
 import pages.admin.LoginPage;
-import pages.admin.customers.Customers.Customers;
-import pages.admin.page_modules.sideBar.customersTable.TwentyFiveItems;
+import pages.admin.customerspage.CustomersPage;
 
 public class CustomerTableTest extends BaseTest {
 
@@ -31,11 +30,11 @@ public class CustomerTableTest extends BaseTest {
                 .login(email, password);
 
         System.out.println("WHEN:Dashboard is opened and user click on customers btn in side bar");
-        Customers customers = dashboardPage.sideBar.openAccountsMenu().clickOnCustomers();
+        CustomersPage customersPage = dashboardPage.sideBar.openAccountSubMenu().clickOnCustomers();
         //  customers.clickAddBtn();
         System.out.println("Then:Customers table is opened and user change count of displaying to 25 items ");
-        TwentyFiveItems twentyFiveItemsDisplaying = customers.changeViewOn25Items();
-       // twentyFiveItemsDisplaying.clickPrintBtn();
+         customersPage.changeViewOn25Items();
+       // customersPage.clickPrintBtn();
 
 
       //  WebDriverProvider.quitDriver(webDriver);

@@ -2,24 +2,31 @@ package mentorship.core.browser;
 
 import mentorship.core.EnvVars.EnvVars;
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
+
+import static mentorship.core.EnvVars.EnvVars.WAIT_TIMEOUT;
 
 public class CommonActions {
 
 
-    protected WebDriver webDriver;
+    protected  WebDriver webDriver;
+
 
     public CommonActions(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
 
-    public CommonActions waitForElementVisibility( WebElement element) {
-
+    public CommonActions waitForElementVisibility(WebElement element) {
         new WebDriverWait(webDriver, EnvVars.WAIT_TIMEOUT)
+                .until(ExpectedConditions.visibilityOf(element));
+        return this;
+    }
+    public CommonActions waitForElementVisibilityWithTime(WebElement element, int defaultTimeout) {
+        new WebDriverWait(webDriver, defaultTimeout)
                 .until(ExpectedConditions.visibilityOf(element));
         return this;
     }
@@ -36,37 +43,71 @@ public class CommonActions {
         return this;
     }
 
-    public Boolean waitForCondition(WebDriver webDriver,  String expectedConditions, int defaultTimeOutSeconds){
-            JavascriptExecutor jsExecutor = (JavascriptExecutor) webDriver;
-                WebDriverWait wait = new WebDriverWait(webDriver, defaultTimeOutSeconds);
-            return wait.until((ExpectedCondition<Boolean>) input -> {
-                String res = jsExecutor.executeScript(expectedConditions).toString();
-                return Boolean.parseBoolean(res);
-            });
+    public void waitForCondition(Function<? super WebDriver, Boolean> function, int timeout) {
+        WebDriverWait wait = new WebDriverWait(webDriver, timeout, 300);
+        wait.until(function);
     }
 
-    public CommonActions waitForElementAppearAndDisappear( WebElement element, int defaultTimeOutSeconds){
-       // webDriver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-       try {
-           new WebDriverWait(webDriver, defaultTimeOutSeconds)
-                   .until(ExpectedConditions.visibilityOf(element));
-           System.out.println(element+ " appear");
-           new WebDriverWait(webDriver, defaultTimeOutSeconds)
-                   .until(ExpectedConditions.invisibilityOf(element));
-           System.out.println(element+ " disapper");
-           //webDriver.manage().timeouts().implicitlyWait(EnvVars.WAIT_TIMEOUT, TimeUnit.SECONDS);
-       }
-       catch (TimeoutException exception){
-           System.out.println("For element"+ element +" was exception:"+exception);
-       }
-        return this;
+//    public void waitForElementNotExist(WebElement element) {
+//        waitForCondition((el) -> !isElementExist(element), WAIT_TIMEOUT);
+//    }
+//
+//    public void waitForElementNotExist(By locator) {
+//        waitForCondition((el) -> !isElementExist(locator), WAIT_TIMEOUT);
+//    }
+//
+//    public void waitForElementAppearAndDisappear(WebElement element) {
+//        try {
+//            waitForCondition((el) -> isElementExist(element), 2);
+//        } catch (TimeoutException e) {
+//        }
+//        waitForElementNotExist(element);
+//    }
+//
+//    public void waitForElementAppearAndDisappear(By locator) {
+//        try {
+//            waitForCondition((el) -> isElementExist(locator), 2);
+//        } catch (TimeoutException e) {
+//        }
+//        waitForElementNotExist(locator);
+//    }
+
+    public void waitForElementAppearAndDisappear(WebElement element, int defaultTimeOutSeconds) {
+        // webDriver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        try {
+            waitForElementVisibilityWithTime(element, defaultTimeOutSeconds);
+            System.out.println(element + " appear");
+            new WebDriverWait(webDriver, defaultTimeOutSeconds)
+                    .until(ExpectedConditions.invisibilityOf(element));
+            System.out.println(element + " disapper");
+            //webDriver.manage().timeouts().implicitlyWait(EnvVars.WAIT_TIMEOUT, TimeUnit.SECONDS);
+        } catch (TimeoutException exception) {
+            System.out.println("For element" + element + " was exception:" + exception);
+        }
+
     }
 
-    public static Boolean checkIfElementExistCssSelector(WebDriver webDriver, String selector) {
-
+    public static Boolean isElementExist(WebDriver webDriver, WebElement element) {
         //Set implict wait to 0
         webDriver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-        boolean exists = webDriver.findElements(By.cssSelector(selector)).size() != 0;
+        Boolean flag = true;
+        try {
+            element.isDisplayed();
+        }
+        catch (NoSuchElementException ex) {
+            // Do something when the second button does not exist
+            System.out.println("No element exist !!! by selector : " + element);
+            flag = false;
+        }
+        webDriver.manage().timeouts().implicitlyWait(WAIT_TIMEOUT, TimeUnit.SECONDS);
+        return flag;
+    }
+
+
+    public static Boolean isElementExist(WebDriver webDriver, By selector) {
+        //Set implict wait to 0
+        webDriver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+        boolean exists = webDriver.findElements(selector).size() != 0;
         if (exists) {
             System.out.println("Element exist : " + selector);
 
@@ -74,7 +115,7 @@ public class CommonActions {
             System.out.println("No element exist !!! by selector : " + selector);
         }
 
-        webDriver.manage().timeouts().implicitlyWait(EnvVars.WAIT_TIMEOUT, TimeUnit.SECONDS);
+        webDriver.manage().timeouts().implicitlyWait(WAIT_TIMEOUT, TimeUnit.SECONDS);
         return exists;
 
 //        List<WebElement> dynamicElement = webDriver.findElements(By.id("id"));

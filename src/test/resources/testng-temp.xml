@@ -9,7 +9,7 @@
       <class name="tests.admin.CustomerTableTest"/>
     </classes>
   </test>
-  <test name="Change setting">
+  <test name="Change account setting">
     <classes>
       <class name="tests.admin.GeneralSettingTest"/>
     </classes>

@@ -1,13 +1,12 @@
-package pages.admin.customers.Customers;
+package pages.admin.customerspage;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pages.BasePage;
-import pages.admin.page_modules.sideBar.customersTable.TwentyFiveItems;
 
-public class Customers extends BasePage {
+public class CustomersPage extends BasePage {
 
 
     @FindBy(css = ".xcrud-list-container")
@@ -28,26 +27,26 @@ public class Customers extends BasePage {
     @FindBy(css = "a[data-task=\"print\"]")
     private WebElement printIcon;
 
-    public Customers(WebDriver webDriver) {
+    public CustomersPage(WebDriver webDriver) {
         super(webDriver);
 
         commonActions.waitForElementVisibility(rootElement);
         PageFactory.initElements(webDriver, this);
     }
 
-    public Customers waitForProgressBar() {
+    public CustomersPage waitForProgressBar() {
         commonActions.waitForElementAppearAndDisappear(progressBar, 5);
         return this;
     }
 
-    public TwentyFiveItems changeViewOn25Items() {
+    public CustomersPage changeViewOn25Items() {
         commonActions.waitForElementVisibility(twentyFiveIcon);
         //commonActions.jsExecute("window.scrollTo(0, document.body.scrollHeight)");
         twentyFiveIcon.click();
 //        String a = "document.querySelector(\"button[data-limit='25']\").click()";
 //        commonActions.jsExecute("document.querySelector(\"button[data-limit='25']\").click()");
         waitForProgressBar();
-        return new TwentyFiveItems(webDriver);
+        return this;
     }
 
     public void clickAddBtn() {
@@ -55,7 +54,7 @@ public class Customers extends BasePage {
         addBtn.click();
         // TODO: add create customer form and return in this method
     }
-    public Customers clickPrintBtn(){
+    public CustomersPage clickPrintBtn(){
         commonActions.waitForElementVisibility(printIcon);
         printIcon.click();
         return this;

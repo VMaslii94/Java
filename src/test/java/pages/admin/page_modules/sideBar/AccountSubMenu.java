@@ -5,9 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import pages.admin.customers.Customers.Customers;
+import pages.admin.customerspage.CustomersPage;
 
-public class AccountMenu extends SideBar {
+public class AccountSubMenu extends SideBar {
 
     WebDriver webDriver;
     CommonActions commonActions;
@@ -19,7 +19,7 @@ public class AccountMenu extends SideBar {
     private WebElement customersSubTabInGeneralTab;
 
 
-    public AccountMenu(WebDriver webDriver) {
+    public AccountSubMenu(WebDriver webDriver) {
         super(webDriver);
         this.webDriver = webDriver;
         this.commonActions = new CommonActions(webDriver);
@@ -28,10 +28,10 @@ public class AccountMenu extends SideBar {
 
     }
 
-    public Customers clickOnCustomers() {
+    public CustomersPage clickOnCustomers() {
         rootElement.click();
         commonActions.waitForElementVisibility(customersSubTabInGeneralTab);
         customersSubTabInGeneralTab.click();
-        return new Customers(webDriver);
+        return new CustomersPage(webDriver);
     }
 }
