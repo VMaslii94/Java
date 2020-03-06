@@ -1,16 +1,13 @@
 package pages.admin.page_modules.sideBar;
 
-import mentorship.core.browser.CommonActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import pages.BasePage;
 import pages.admin.SettingsPage;
 
-public class GeneralSubMenu extends SideBar  {
-
-    WebDriver webDriver;
-    CommonActions commonActions;
+public class GeneralSubMenu extends BasePage {
 
     @FindBy(css = "a[href=\"#menu-ui\"]")
     private WebElement rootElement;
@@ -21,8 +18,6 @@ public class GeneralSubMenu extends SideBar  {
 
     public GeneralSubMenu(WebDriver webDriver) {
         super(webDriver);
-        this.webDriver = webDriver;
-        this.commonActions = new CommonActions(webDriver);
         commonActions.waitForElementVisibility(rootElement);
         PageFactory.initElements(webDriver, this);
 

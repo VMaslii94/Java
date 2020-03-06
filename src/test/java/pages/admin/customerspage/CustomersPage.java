@@ -1,5 +1,6 @@
 package pages.admin.customerspage;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -41,7 +42,8 @@ public class CustomersPage extends BasePage {
 
     public CustomersPage changeViewOn25Items() {
         commonActions.waitForElementVisibility(twentyFiveIcon);
-        //commonActions.jsExecute("window.scrollTo(0, document.body.scrollHeight)");
+        commonActions.waitForCondition(el -> webDriver.findElements(By.cssSelector(".xcrud-list-container table tbody")).size() == 1, 15);
+        //commonActions.jsExecute("window.scrollTo(0, document.body.scrollHeight)");;
         twentyFiveIcon.click();
 //        String a = "document.querySelector(\"button[data-limit='25']\").click()";
 //        commonActions.jsExecute("document.querySelector(\"button[data-limit='25']\").click()");

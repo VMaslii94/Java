@@ -31,7 +31,7 @@ public class GeneralSettingTest extends BaseTest {
                 .login(email, password);
 
         System.out.println("WHEN:Dashboard is opened and user click on setting btn in side bar");
-        SettingsPage settingsPage = dashboardPage.sideBar.openGeneralSubMenu().clickOnSettings();
+        SettingsPage settingsPage = dashboardPage.sideBar.openGeneralSubMenu().generalSubMenu.clickOnSettings();
 
         System.out.println("GIVEN: Admin User with multiLanguage value");
         final String multiLanguageValue = "Disabled";

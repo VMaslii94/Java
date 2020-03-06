@@ -30,8 +30,9 @@ public class CustomerTableTest extends BaseTest {
                 .login(email, password);
 
         System.out.println("WHEN:Dashboard is opened and user click on customers btn in side bar");
-        CustomersPage customersPage = dashboardPage.sideBar.openAccountSubMenu().clickOnCustomers();
-        //  customers.clickAddBtn();
+        CustomersPage customersPage = dashboardPage.sideBar.openAccountSubMenu().accountSubMenu.clickOnCustomers();
+        //  customersPage.clickAddBtn();
+
         System.out.println("Then:Customers table is opened and user change count of displaying to 25 items ");
          customersPage.changeViewOn25Items();
        // customersPage.clickPrintBtn();

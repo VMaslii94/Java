@@ -4,7 +4,6 @@ import mentorship.core.EnvVars.EnvVars;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
@@ -13,13 +12,16 @@ import static mentorship.core.EnvVars.EnvVars.WAIT_TIMEOUT;
 public class CommonActions {
 
 
-    protected  WebDriver webDriver;
+    private  WebDriver webDriver;
+
 
 
     public CommonActions(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
-
+    public WebDriver get(){
+        return this.webDriver;
+    }
     public CommonActions waitForElementVisibility(WebElement element) {
         new WebDriverWait(webDriver, EnvVars.WAIT_TIMEOUT)
                 .until(ExpectedConditions.visibilityOf(element));
@@ -44,33 +46,34 @@ public class CommonActions {
     }
 
     public void waitForCondition(Function<? super WebDriver, Boolean> function, int timeout) {
+        //WebDriverWait wait = new WebDriverWait(webDriver.get(), timeout, 300);
         WebDriverWait wait = new WebDriverWait(webDriver, timeout, 300);
         wait.until(function);
     }
 
-//    public void waitForElementNotExist(WebElement element) {
-//        waitForCondition((el) -> !isElementExist(element), WAIT_TIMEOUT);
-//    }
-//
-//    public void waitForElementNotExist(By locator) {
-//        waitForCondition((el) -> !isElementExist(locator), WAIT_TIMEOUT);
-//    }
-//
-//    public void waitForElementAppearAndDisappear(WebElement element) {
-//        try {
-//            waitForCondition((el) -> isElementExist(element), 2);
-//        } catch (TimeoutException e) {
-//        }
-//        waitForElementNotExist(element);
-//    }
-//
-//    public void waitForElementAppearAndDisappear(By locator) {
-//        try {
-//            waitForCondition((el) -> isElementExist(locator), 2);
-//        } catch (TimeoutException e) {
-//        }
-//        waitForElementNotExist(locator);
-//    }
+    public void waitForElementNotExist(WebElement element) {
+        waitForCondition((el) -> !isElementExist(element), WAIT_TIMEOUT);
+    }
+
+    public void waitForElementNotExist(By locator) {
+        waitForCondition((el) -> !isElementExist(locator), WAIT_TIMEOUT);
+    }
+
+    public void waitForElementAppearAndDisappear(WebElement element) {
+        try {
+            waitForCondition((el) -> isElementExist (element), 2);
+        } catch (TimeoutException e) {
+        }
+        waitForElementNotExist(element);
+    }
+
+    public void waitForElementAppearAndDisappear(By locator) {
+        try {
+            waitForCondition((el) -> isElementExist(locator), 2);
+        } catch (TimeoutException e) {
+        }
+        waitForElementNotExist(locator);
+    }
 
     public void waitForElementAppearAndDisappear(WebElement element, int defaultTimeOutSeconds) {
         // webDriver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
@@ -87,7 +90,7 @@ public class CommonActions {
 
     }
 
-    public static Boolean isElementExist(WebDriver webDriver, WebElement element) {
+    public  Boolean isElementExist( WebElement element) {
         //Set implict wait to 0
         webDriver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         Boolean flag = true;
@@ -104,7 +107,8 @@ public class CommonActions {
     }
 
 
-    public static Boolean isElementExist(WebDriver webDriver, By selector) {
+    public Boolean isElementExist(By selector) {
+
         //Set implict wait to 0
         webDriver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         boolean exists = webDriver.findElements(selector).size() != 0;
@@ -118,18 +122,6 @@ public class CommonActions {
         webDriver.manage().timeouts().implicitlyWait(WAIT_TIMEOUT, TimeUnit.SECONDS);
         return exists;
 
-//        List<WebElement> dynamicElement = webDriver.findElements(By.id("id"));
-//        if(dynamicElement.size() != 0){
-//
-//            //If list size is non-zero, element is present
-//            System.out.println("Element present");
-//            return true;
-//        }
-//        else{
-//            //Else if size is 0, then element is not present
-//            System.out.println("Element not present");
-//            return false;
-//        }
     }
 
 }

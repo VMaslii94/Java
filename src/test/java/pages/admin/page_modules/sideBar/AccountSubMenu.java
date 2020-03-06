@@ -1,16 +1,13 @@
 package pages.admin.page_modules.sideBar;
 
-import mentorship.core.browser.CommonActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import pages.BasePage;
 import pages.admin.customerspage.CustomersPage;
 
-public class AccountSubMenu extends SideBar {
-
-    WebDriver webDriver;
-    CommonActions commonActions;
+public class AccountSubMenu extends BasePage {
 
     @FindBy(css = "a[href=\"#ACCOUNTS\"]")
     private WebElement rootElement;
@@ -21,15 +18,12 @@ public class AccountSubMenu extends SideBar {
 
     public AccountSubMenu(WebDriver webDriver) {
         super(webDriver);
-        this.webDriver = webDriver;
-        this.commonActions = new CommonActions(webDriver);
         commonActions.waitForElementVisibility(rootElement);
         PageFactory.initElements(webDriver, this);
 
     }
 
     public CustomersPage clickOnCustomers() {
-        rootElement.click();
         commonActions.waitForElementVisibility(customersSubTabInGeneralTab);
         customersSubTabInGeneralTab.click();
         return new CustomersPage(webDriver);

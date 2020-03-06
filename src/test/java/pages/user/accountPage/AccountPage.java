@@ -1,6 +1,5 @@
 package pages.user.accountPage;
 
-import mentorship.core.browser.CommonActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -48,7 +47,7 @@ public class AccountPage extends CommonUserPage {
     }
 
     public boolean checkNavigationBarExistence() {
-        return CommonActions.isElementExist( webDriver, cssSelector("nav.main-nav-menu"));
+        return commonActions.isElementExist( cssSelector("nav.main-nav-menu"));
     }
 
 
