@@ -2,14 +2,13 @@ package tests.admin;
 
 import mentorship.constants.CONSTANTS;
 import mentorship.core.browser.WebDriverProvider;
-import mentorship.suitSetup.BaseTest;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 import pages.admin.DashboardPage;
 import pages.admin.LoginPage;
 import pages.admin.customerspage.CustomersPage;
 
-public class CustomerTableTest extends BaseTest {
+public class CustomerTableTest {
 
 
     @Test

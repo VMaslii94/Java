@@ -10,7 +10,7 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import java.util.ArrayList;
 
 public class WebDriverProvider {
-static ArrayList<WebDriver> activeDrivers = new ArrayList<>();
+    static ArrayList<WebDriver> activeDrivers = new ArrayList<>();
 
 
     public static WebDriver createDriver(String browserName) {
@@ -53,15 +53,16 @@ static ArrayList<WebDriver> activeDrivers = new ArrayList<>();
 
     }
 
-    public static void quitDriver(WebDriver webDriver){
+    public static void quitDriver(WebDriver webDriver) {
         webDriver.quit();
 
     }
-    public static void quitAllDriver(){
 
-       for (WebDriver driver: activeDrivers){
-           driver.quit();
-       }
+    public static void quitAllDriver() {
+
+        for (WebDriver driver : activeDrivers) {
+            driver.quit();
+        }
 
     }
 

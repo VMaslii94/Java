@@ -2,7 +2,6 @@ package tests.admin;
 
 import mentorship.constants.CONSTANTS;
 import mentorship.core.browser.WebDriverProvider;
-import mentorship.suitSetup.BaseTest;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -10,7 +9,7 @@ import pages.admin.DashboardPage;
 import pages.admin.LoginPage;
 import pages.admin.SettingsPage;
 
-public class GeneralSettingTest extends BaseTest {
+public class GeneralSettingTest  {
 
 
     @Test
