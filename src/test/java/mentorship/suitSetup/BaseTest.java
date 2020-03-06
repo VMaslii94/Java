@@ -1,5 +1,6 @@
 package mentorship.suitSetup;
 
+import mentorship.core.browser.WebDriverProvider;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
@@ -15,6 +16,8 @@ public class BaseTest {
 
     @AfterSuite
     public void after() {
+
+        WebDriverProvider.quitAllDriver();
         System.out.println("After all");
     }
 

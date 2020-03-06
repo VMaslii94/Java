@@ -7,7 +7,11 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
+import java.util.ArrayList;
+
 public class WebDriverProvider {
+static ArrayList<WebDriver> activeDrivers = new ArrayList<>();
+
 
     public static WebDriver createDriver(String browserName) {
         WebDriver webDriver;
@@ -23,6 +27,7 @@ public class WebDriverProvider {
             // options.addArguments("--ignore-certificate-errors");
             // options.addArguments("--disable-gpu");
             webDriver = new ChromeDriver(options);
+            activeDrivers.add(webDriver);
 
         } else if (browserName.equals(Browser.FF.name())) {
             //  System.setProperty("webdriver.firefox.bin", "/usr/lib/firefox/firefox");
@@ -34,7 +39,7 @@ public class WebDriverProvider {
                 options.setHeadless(true);
             }
             webDriver = new FirefoxDriver(options);
-
+            activeDrivers.add(webDriver);
 
 //            // For use with RemoteWebDriver:
 //            RemoteWebDriver driver = new RemoteWebDriver(
@@ -50,6 +55,13 @@ public class WebDriverProvider {
 
     public static void quitDriver(WebDriver webDriver){
         webDriver.quit();
+
+    }
+    public static void quitAllDriver(){
+
+       for (WebDriver driver: activeDrivers){
+           driver.quit();
+       }
 
     }
 
