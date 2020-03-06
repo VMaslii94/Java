@@ -1,6 +1,6 @@
 package mentorship.core.waiters;
 
-import mentorship.core.EnvVars.EnvVars;
+import mentorship.core.env_vars.EnvVars;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;

@@ -1,8 +1,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="DataProvider and listener" parallel="false" thread-count="3">
   <listeners>
-    <listener class-name="mentorship.core.Loger.CustomLoger"/>
-    <listener class-name="mentorship.core.Reporters.CustomReporter"/>
+    <listener class-name="mentorship.core.logers.CustomLoger"/>
+    <listener class-name="mentorship.core.reporters.CustomReporter"/>
   </listeners>
   <test name="BEFORE/AFTER section">
     <classes>

@@ -1,4 +1,4 @@
-package mentorship.core.Reporters;
+package mentorship.core.reporters;
 
 import org.testng.IReporter;
 import org.testng.ISuite;

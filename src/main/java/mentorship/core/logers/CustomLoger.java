@@ -1,4 +1,4 @@
-package mentorship.core.Loger;
+package mentorship.core.logers;
 
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;

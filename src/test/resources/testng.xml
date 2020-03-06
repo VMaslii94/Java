@@ -2,8 +2,8 @@
 <suite name="DataProvider and listener" parallel="tests" thread-count="3">
     <!--    <parameter name="browser" value="firefox"></parameter>-->
     <listeners>
-        <listener class-name="mentorship.core.Loger.CustomLoger"/>
-        <listener class-name="mentorship.core.Reporters.CustomReporter"/>
+        <listener class-name="mentorship.core.logers.CustomLoger"/>
+        <listener class-name="mentorship.core.reporters.CustomReporter"/>
 
     </listeners>
 
@@ -53,7 +53,7 @@
     <!--            </run>-->
     <!--        </groups>-->
     <!--        <classes>-->
-    <!--            <class name="mentorship.TestNGTests.CustomLoggingBaseTest">-->
+    <!--            <class name="mentorship.testNG_tests.CustomLoggingBaseTest">-->
     <!--                <methods>-->
     <!--                    <exclude name="methodFive"></exclude>-->
     <!--                </methods>-->
@@ -64,7 +64,7 @@
 
     <!--    <test name="Test2">-->
     <!--        <classes>-->
-    <!--            <class name="mentorship.TestNGTests.TestWithDataProvider"/>-->
+    <!--            <class name="mentorship.testNG_tests.TestWithDataProvider"/>-->
     <!--        </classes>-->
     <!--    </test>-->
 

@@ -1,4 +1,4 @@
-package mentorship.core.EnvVars;
+package mentorship.core.env_vars;
 
 public class EnvVars {
 

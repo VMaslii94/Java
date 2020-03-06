@@ -1,4 +1,4 @@
-package mentorship.TestNGTests;
+package mentorship.testNG_tests;
 
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import mentorship.suitSetup.BaseTest;

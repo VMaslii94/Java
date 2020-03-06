@@ -1,6 +1,6 @@
 package mentorship.core.browser;
 
-import mentorship.core.EnvVars.EnvVars;
+import mentorship.core.env_vars.EnvVars;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;

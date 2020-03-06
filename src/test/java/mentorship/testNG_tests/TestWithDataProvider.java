@@ -1,4 +1,4 @@
-package mentorship.TestNGTests;
+package mentorship.testNG_tests;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;

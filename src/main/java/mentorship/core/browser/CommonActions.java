@@ -1,13 +1,13 @@
 package mentorship.core.browser;
 
-import mentorship.core.EnvVars.EnvVars;
+import mentorship.core.env_vars.EnvVars;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
-import static mentorship.core.EnvVars.EnvVars.WAIT_TIMEOUT;
+import static mentorship.core.env_vars.EnvVars.WAIT_TIMEOUT;
 
 public class CommonActions {
 
