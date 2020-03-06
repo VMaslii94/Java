@@ -1,4 +1,4 @@
-package mentorship.core.DataProvider;
+package mentorship.core.data_provider;
 
 import org.testng.annotations.DataProvider;
 
