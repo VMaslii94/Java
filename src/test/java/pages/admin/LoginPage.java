@@ -5,7 +5,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.BasePage;
 
+import static io.qameta.allure.Allure.step;
+
 public class LoginPage extends BasePage {
+
 
     @FindBy(css = "form.form-signin")
     private WebElement rootElement;
@@ -18,6 +21,7 @@ public class LoginPage extends BasePage {
 
     @FindBy(css = "button.btn-lg")
     private WebElement loginBtn;
+
 
 
     public LoginPage(WebDriver webDriver) {
@@ -43,6 +47,8 @@ public class LoginPage extends BasePage {
     }
 
     public DashboardPage login(String email, String password){
+//        description("LoginPageDescriptions");
+        step("Login with userName : "+ email+" and password :"+password);
         setEmail(email);
         setPassword(password);
         clickLoginBtn();

@@ -7,6 +7,8 @@ import org.openqa.selenium.support.PageFactory;
 import pages.BasePage;
 import pages.admin.SettingsPage;
 
+import static io.qameta.allure.Allure.step;
+
 public class GeneralSubMenu extends BasePage {
 
     @FindBy(css = "a[href=\"#menu-ui\"]")
@@ -24,6 +26,7 @@ public class GeneralSubMenu extends BasePage {
     }
 
     public SettingsPage clickOnSettings() {
+        step("Opened Settings menu");
         commonActions.waitForElementVisibility(rootElement);
         rootElement.click();
         commonActions.waitForElementVisibility(settingSubTabInGeneralTab);

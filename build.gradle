@@ -1,35 +1,86 @@
-plugins {
-    id 'java'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        dependencies {
+//            classpath "io.franzbecker:gradle-lombok:2.1"
+            classpath "io.qameta.allure:allure-gradle:2.8.1"
+        //    classpath "io.freefair.gradle:aspectj-plugin:5.0.0-rc6"
+
+        }
+    }
 }
 
+plugins {
+    id 'java'
+    id 'io.qameta.allure' version "2.8.1"
+  //  id "io.freefair.aspectj.post-compile-weaving" version "5.0.0-rc6"
+}
+//apply plugin: "io.freefair.aspectj.post-compile-weaving"
 group 'org.example'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
+
 
 repositories {
     mavenCentral()
 }
 
+//configurations {
+//    agent
+//}
+
 dependencies {
     // testCompile group: 'junit', name: 'junit', version: '4.12'
+   // agent "org.aspectj:aspectjweaver:1.8.10"
     compile group: 'org.testng', name: 'testng', version: '6.0.1'
     compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
+    compile group: 'io.qameta.allure', name: 'allure-testng', version: '2.12.1'
 }
+allure {
+    version = '2.8.1'
+    autoconfigure = true
+    aspectjweaver = true
+    resultsDir = file('/Users/vladmaslii/IdeaProjects/TestingProject/allure_reports/allure-results')
+    reportDir = file('/Users/vladmaslii/IdeaProjects/TestingProject/allure_reports/allure-report')
+
+}
+
+//test.doFirst {
+//    jvmArgs "-javaagent:${configurations.agent.singleFile}"
+//}
 
 test {
     //       dependsOn 'generateSuiteXml'
     //        systemProperties project.properties.subMap("BrowserName");
     useTestNG() {
-        suites 'src/test/resources/testng.xml'
+        suites 'src/test/resources/testng-temp.xml'
         useDefaultListeners = true
         outputDirectory = file(("$projectDir/TestResultReport/Test"))
     }
 
     // options.suites('src/test/resources/testng.xml')
 
-
+    systemProperty 'allure.results.directory', 'allure_reports/allure-results'
 }
+
+task generateAllure(type: Exec) {
+    workingDir "$projectDir/allure_reports"
+    delete "allure_reports"
+    if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+        commandLine 'cmd', '/c', 'allure.bat', 'generate', '-c', '../../allure_reports/allure-results'
+    } else {
+        commandLine  'allure', 'generate', '-c',"$projectDir/allure_reports/allure-results",'-c',"--clean"
+        // commandLine 'bash', '-c', 'allure', 'generate', '-c',"$projectDir/allure_reports/allure-results"
+    }
+}
+
+tasks.withType(Test)*.finalizedBy generateAllure
+
+
+
 
 //task generateSuiteXml() {
 //    //Get browser from system param or set as default

@@ -1,6 +1,6 @@
 package mentorship.testNG_tests;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
+//import jdk.nashorn.internal.ir.annotations.Ignore;
 import mentorship.suitSetup.BaseTest;
 import org.testng.Assert;
 import org.testng.Reporter;
@@ -50,7 +50,7 @@ public class CustomLoggingBaseTest extends BaseTest {
     }
 
 
-    @Ignore
+//    @Ignore
     @Test( groups ="anotherGroup", dependsOnGroups = {firstGroup})
     private void methodSeven() {
         Assert.assertTrue(true);

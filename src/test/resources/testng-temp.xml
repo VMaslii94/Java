@@ -4,20 +4,20 @@
     <listener class-name="mentorship.core.logers.CustomLoger"/>
     <listener class-name="mentorship.core.reporters.CustomReporter"/>
   </listeners>
-  <test name="BEFORE/AFTER section">
-    <classes>
-      <class name="mentorship.suitSetup.BaseTest"/>
-    </classes>
-  </test>
+<!--  <test name="BEFORE/AFTER section">-->
+<!--    <classes>-->
+<!--      <class name="mentorship.suitSetup.BaseTest"/>-->
+<!--    </classes>-->
+<!--  </test>-->
 
-  <test name="Customers">
-    <classes>
-      <class name="tests.admin.CustomerTableTest"/>
-    </classes>
-  </test>
+<!--  <test name="Customers">-->
+<!--    <classes>-->
+<!--      <class name="tests.admin.CustomerTableTest"/>-->
+<!--    </classes>-->
+<!--  </test>-->
   <test name="Change account setting">
     <classes>
-      <class name="tests.admin.GeneralSettingTest"/>
+      <class name="tests.admin.test_with_allure_reports.GeneralSettingTest"/>
     </classes>
   </test>
 </suite>
