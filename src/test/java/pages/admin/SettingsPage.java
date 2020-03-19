@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import pages.BasePage;
 
+import static io.qameta.allure.Allure.step;
+
 public class SettingsPage extends BasePage {
     @FindBy(css = "form[enctype= \"multipart/form-data\"]")
     private WebElement rootElement;
@@ -27,6 +29,8 @@ public class SettingsPage extends BasePage {
         commonActions.waitForElementVisibility(multiLanguage);
         Select multiLanguageList = new Select(multiLanguage);
         multiLanguageList.selectByVisibleText(flag);
+        step("In Settings page set multiple language value");
+     //   allureReport.takeScreenshotIntoReport("In Settings page set multiple language :"+ flag);
         return this;
     }
 

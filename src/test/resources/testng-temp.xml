@@ -15,7 +15,12 @@
 <!--      <class name="tests.admin.CustomerTableTest"/>-->
 <!--    </classes>-->
 <!--  </test>-->
-  <test name="Change account setting">
+  <test name="Allure report test 1">
+    <classes>
+      <class name="tests.admin.test_with_allure_reports.AllureTest"/>
+    </classes>
+  </test>
+  <test name="Allure report test 2">
     <classes>
       <class name="tests.admin.test_with_allure_reports.GeneralSettingTest"/>
     </classes>

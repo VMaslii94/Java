@@ -26,11 +26,12 @@ public class GeneralSubMenu extends BasePage {
     }
 
     public SettingsPage clickOnSettings() {
-        step("Opened Settings menu");
         commonActions.waitForElementVisibility(rootElement);
         rootElement.click();
         commonActions.waitForElementVisibility(settingSubTabInGeneralTab);
         settingSubTabInGeneralTab.click();
+        step("Opened Settings menu");
+//        allureReport.takeScreenshotIntoReport("Opened Settings menu");
         return new SettingsPage(webDriver);
     }
 }

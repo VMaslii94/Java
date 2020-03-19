@@ -1,0 +1,14 @@
+[
+  {
+    "Person info": {
+      "firstName": "Lokesh",
+      "lastName": "Gupta",
+      "website": "howtodoinjava.com"
+    }
+  },
+  {
+    "Custom information": {
+      "adress": "MyHomeAdress"
+    }
+  }
+]

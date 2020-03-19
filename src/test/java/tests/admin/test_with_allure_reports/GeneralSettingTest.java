@@ -4,6 +4,7 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import mentorship.constants.CONSTANTS;
 import mentorship.core.browser.WebDriverProvider;
+import org.json.simple.parser.ParseException;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -11,13 +12,15 @@ import pages.admin.DashboardPage;
 import pages.admin.LoginPage;
 import pages.admin.SettingsPage;
 
+import java.io.IOException;
+
 import static io.qameta.allure.Allure.description;
 
 public class GeneralSettingTest {
 
     @Severity(SeverityLevel.NORMAL)
     @Test
-    public void setMultipleLanguage() {
+    public void setMultipleLanguage() throws IOException, ParseException {
         description("GeneralSettingTest");
 
         System.out.println("GIVEN: Login page of Admin is opened");
@@ -34,6 +37,7 @@ public class GeneralSettingTest {
         DashboardPage dashboardPage = new LoginPage(webDriver)
                 .login(email, password);
 
+
         System.out.println("WHEN:Dashboard is opened and user click on setting btn in side bar");
         SettingsPage settingsPage = dashboardPage.sideBar.openGeneralSubMenu().generalSubMenu.clickOnSettings();
 
@@ -43,10 +47,16 @@ public class GeneralSettingTest {
         System.out.println("THEN:Setting page is opened and user save chaged value for multi language field");
         settingsPage.setMultiLanguageField(multiLanguageValue).submitChanges();
 
+//        AllureReport allureReport= new AllureReport(webDriver);
+//        allureReport.addTextIntoReport("GoogleText");
+//       addAttachment("rrr","application/json", new String(Files.readAllBytes(Paths.get("/Users/vladmaslii/IdeaProjects/TestingProject/src/test/resources/files/Allure_JSON.json")))  );
+//       // attachment("ttest1", JSONParser."/Users/vladmaslii/IdeaProjects/TestingProject/src/test/resources/files/Allure_JSON.json");
+
         System.out.println("THEN:Setting page still opened and user validate value for multi language field");
         Assert.assertEquals(settingsPage.getSelectedMultiLanguageValue(), multiLanguageValue, "Validate multiLanguage value after editing");
 
 
         WebDriverProvider.quitDriver(webDriver);
     }
+
 }

@@ -27,7 +27,6 @@ public class LoginPage extends BasePage {
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
         commonActions.waitForElementVisibility(rootElement);
-
     }
 
 
@@ -46,11 +45,13 @@ public class LoginPage extends BasePage {
         return new DashboardPage(webDriver);
     }
 
-    public DashboardPage login(String email, String password){
+
+    public DashboardPage login(String email, String password) {
 //        description("LoginPageDescriptions");
         step("Login with userName : "+ email+" and password :"+password);
         setEmail(email);
         setPassword(password);
+        allureReport.takeScreenshotIntoReport("When login page opened and populated login and password");
         clickLoginBtn();
         return  new DashboardPage(webDriver);
     }
